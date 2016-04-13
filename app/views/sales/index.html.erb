@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Sales</h1>
 
 <table>
@@ -23,7 +21,7 @@
         <td><%= sale.bill_sale_amount %></td>
         <td><%= sale.number_of_invoices %></td>
         <td><%= sale.invoice_sale_amount %></td>
-        <td><%= sale.store %></td>
+        <td><%= sale.store.name %></td>
         <td><%= link_to 'Show', sale %></td>
         <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
         <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
