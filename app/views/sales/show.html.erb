@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sales date:</strong>
+  <%= @sale.sales_date %>
+</p>
+
+<p>
+  <strong>Number of bills:</strong>
+  <%= @sale.number_of_bills %>
+</p>
+
+<p>
+  <strong>Bill sale amount:</strong>
+  <%= @sale.bill_sale_amount %>
+</p>
+
+<p>
+  <strong>Number of invoices:</strong>
+  <%= @sale.number_of_invoices %>
+</p>
+
+<p>
+  <strong>Invoice sale amount:</strong>
+  <%= @sale.invoice_sale_amount %>
+</p>
+
+<p>
+  <strong>Store:</strong>
+  <%= @sale.store %>
+</p>
+
+<%= link_to 'Edit', edit_sale_path(@sale) %> |
+<%= link_to 'Back', sales_path %>

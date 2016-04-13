@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sales_date: 2016-04-13
+  number_of_bills: 1
+  bill_sale_amount: 1
+  number_of_invoices: 1
+  invoice_sale_amount: 1
+  store_id: 
+
+two:
+  sales_date: 2016-04-13
+  number_of_bills: 1
+  bill_sale_amount: 1
+  number_of_invoices: 1
+  invoice_sale_amount: 1
+  store_id: 
