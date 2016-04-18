@@ -8,6 +8,31 @@
 </head>
 <body>
 
+<% if user_signed_in? %>
+    Signed in as <%= current_user.email %>. Not you?
+    <%= link_to "Edit profile", edit_user_registration_path %>
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  <% if Role.find_by(name: "Admin").id == current_user.role_id %>
+  <ul>
+    <li><%= link_to "Centros comerciales", properties_path %></li>
+    <li><%= link_to "Locales", stores_path %></li>
+    <li><%= link_to "Ventas", sales_path %></li>
+    <li><%= link_to "Rubros", categories_path %></li>
+  </ul>
+  <% else  %>
+  <ul>
+    <li><%= link_to "Ventas", sales_path %></li>
+  </ul>
+  <% end %>
+<% else %>
+  <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+<% end %>
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, id: "flash_#{name}" %>
+
+<% end %>
+
 <%= yield %>
 
 </body>

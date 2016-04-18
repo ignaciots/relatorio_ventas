@@ -24,8 +24,23 @@
 </p>
 
 <p>
-  <strong>Store:</strong>
+  <strong>Store Name:</strong>
   <%= @sale.store.name %>
+</p>
+
+<p>
+  <strong>Store Number:</strong>
+  <%= @sale.store.number %>
+</p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @sale.store.property.name %>
+</p>
+
+<p>
+  <strong>Author Name:</strong>
+  <%= @sale.user.name %>
 </p>
 
 <%= link_to 'Edit', edit_sale_path(@sale) %> |

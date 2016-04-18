@@ -8,7 +8,10 @@
       <th>Bill sale amount</th>
       <th>Number of invoices</th>
       <th>Invoice sale amount</th>
-      <th>Store</th>
+      <th>Store Name</th>
+      <th>Store Number</th>
+      <th>Property</th>
+      <th>Sale Author</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,6 +25,9 @@
         <td><%= sale.number_of_invoices %></td>
         <td><%= sale.invoice_sale_amount %></td>
         <td><%= sale.store.name %></td>
+        <td><%= sale.store.number %></td>
+        <td><%= sale.store.property.name %></td>
+        <td><%= sale.user.name %></td>
         <td><%= link_to 'Show', sale %></td>
         <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
         <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>

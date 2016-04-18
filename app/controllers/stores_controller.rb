@@ -1,4 +1,5 @@
 class StoresController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_store, only: [:show, :edit, :update, :destroy]
 
   # GET /stores
@@ -69,6 +70,6 @@ class StoresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_params
-      params.require(:store).permit(:name, :number, :floor, :category, :telephone, :email)
+      params.require(:store).permit(:name, :number, :floor, :category, :telephone, :email, :property_id, :category_id)
     end
 end

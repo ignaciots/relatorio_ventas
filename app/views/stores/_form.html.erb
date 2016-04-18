@@ -16,6 +16,10 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :property %><br>
+    <%= collection_select(:store, :property_id, Property.all, :id, :name, prompt: true) %>
+  </div>
+  <div class="field">
     <%= f.label :number %><br>
     <%= f.text_field :number %>
   </div>
@@ -25,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :category %><br>
-    <%= f.text_field :category %>
+    <%= collection_select(:store, :category_id, Category.all, :id, :name, prompt: true) %>
   </div>
   <div class="field">
     <%= f.label :telephone %><br>

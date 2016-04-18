@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Property</th>
       <th>Number</th>
       <th>Floor</th>
       <th>Category</th>
@@ -19,9 +20,10 @@
     <% @stores.each do |store| %>
       <tr>
         <td><%= store.name %></td>
+        <td><%= store.property.name %></td>
         <td><%= store.number %></td>
         <td><%= store.floor %></td>
-        <td><%= store.category %></td>
+        <td><%= store.category.name %></td>
         <td><%= store.telephone %></td>
         <td><%= store.email %></td>
         <td><%= link_to 'Show', store %></td>

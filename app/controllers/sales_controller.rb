@@ -1,10 +1,11 @@
 class SalesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
 
   # GET /sales
   # GET /sales.json
   def index
-    @sales = Sale.all
+    set_sale_listing
   end
 
   # GET /sales/1
@@ -62,13 +63,22 @@ class SalesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_sale
       @sale = Sale.find(params[:id])
     end
 
+    def set_sale_listing
+      if Role.find_by(name: "Admin").id == current_user.role_id
+        @sales = Sale.all
+      elsif Store.exists?(id: current_user.store_id)
+        @sales = current_user.store.sales
+      else
+        render 'users/_profile.html.erb'
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:sales_date, :number_of_bills, :bill_sale_amount, :number_of_invoices, :invoice_sale_amount, :store_id)
+      params.require(:sale).permit(:sales_date, :number_of_bills, :bill_sale_amount, :number_of_invoices, :invoice_sale_amount, :store_id, :user_id)
     end
 end

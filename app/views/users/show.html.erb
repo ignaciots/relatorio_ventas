@@ -4,8 +4,31 @@
 </p>
 
 <p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
   <strong>Role:</strong>
   <%= @user.role.name %>
+</p>
+
+<p>
+  <strong>Store:</strong>
+  <%= @user.store_with_property %>
+</p>
+
+<p>
+  <strong>Joined on:</strong>
+  <%= @joined_on %>
+</p>
+<p>
+  <strong>Last logged in on:</strong>
+  <%= @last_login %>
+</p>
+<p>
+  <strong>No. times logged in:</strong>
+  <%= @user.sign_in_count %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
