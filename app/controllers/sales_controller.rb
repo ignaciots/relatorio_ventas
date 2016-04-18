@@ -68,7 +68,7 @@ class SalesController < ApplicationController
     end
 
     def set_sale_listing
-      if Role.find_by(name: "Admin").id == current_user.role_id
+      if Role.find_by(name: "admin").id == current_user.role_id
         @sales = Sale.all
       elsif Store.exists?(id: current_user.store_id)
         @sales = current_user.store.sales
