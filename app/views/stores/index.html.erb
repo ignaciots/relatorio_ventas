@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Stores</h1>
+<h1>Locales</h1>
 
 <table>
   <thead>
@@ -26,14 +26,21 @@
         <td><%= store.category.name %></td>
         <td><%= store.telephone %></td>
         <td><%= store.email %></td>
-        <td><%= link_to 'Show', store %></td>
-        <td><%= link_to 'Edit', edit_store_path(store) %></td>
-        <td><%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :show, Store %>
+          <td><%= link_to 'Show', store %></td>
+        <% end %>
+        <% if can? :edit, Store %>
+          <td><%= link_to 'Edit', edit_store_path(store) %></td>
+        <% end %>
+        <% if can? :destroy, Store %>
+          <td><%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Store', new_store_path %>
+<% if can? :create, Store %>
+  <%= link_to 'New Store', new_store_path %>
+<% end %>

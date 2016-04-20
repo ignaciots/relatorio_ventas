@@ -1,4 +1,4 @@
-<h1>Listing Sales</h1>
+<h1>Ventas</h1>
 
 <table>
   <thead>
@@ -29,13 +29,22 @@
         <td><%= sale.store.property.name %></td>
         <td><%= sale.user.name %></td>
         <td><%= link_to 'Show', sale %></td>
-        <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
-        <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if can? :edit, sale %>
+            <%= link_to 'Edit', edit_sale_path(sale) %>
+          <% end %>
+        </td>
+        <td>
+          <% if can? :destroy, sale %>
+            <%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Sale', new_sale_path %>
+<% if can? :create, Sale %>
+  <%= link_to 'New Sale', new_sale_path %>
+<% end %>

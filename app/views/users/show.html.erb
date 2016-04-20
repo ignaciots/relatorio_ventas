@@ -15,7 +15,7 @@
 
 <p>
   <strong>Store:</strong>
-  <%= @user.store_with_property %>
+  <% if @user.has_store? %><%= @user.store_with_property %><% end %>
 </p>
 
 <p>

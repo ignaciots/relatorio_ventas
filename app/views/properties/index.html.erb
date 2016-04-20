@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Properties</h1>
+<h1>Centros Comerciales</h1>
 
 <table>
   <thead>
@@ -16,14 +16,22 @@
       <tr>
         <td><%= property.name %></td>
         <td><%= property.address %></td>
-        <td><%= link_to 'Show', property %></td>
-        <td><%= link_to 'Edit', edit_property_path(property) %></td>
-        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :show, Property %>
+          <td><%= link_to 'Show', property %></td>
+        <% end %>
+        <% if can? :edit, Property %>
+          <td><%= link_to 'Edit', edit_property_path(property) %></td>
+        <% end %>
+        <% if can? :destroy, Property %>
+          <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        <td> <%= link_to 'Locales', '#' %> </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Property', new_property_path %>
+<% if can? :create, Property %>
+  <%= link_to 'New Property', new_property_path %>
+<% end %>

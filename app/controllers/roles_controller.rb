@@ -1,36 +1,29 @@
 class RolesController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_role, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+  # before_action :set_role, only: [:show, :edit, :update, :destroy]
 
-  # GET /roles
-  # GET /roles.json
   def index
     @roles = Role.all
   end
 
-  # GET /roles/1
-  # GET /roles/1.json
   def show
     if @role.users.length == 0
-      @assosciated_users = "None"
+      @associated_users = "None"
     else
-      @assosciated_users = @role.users.map(&:name).join(", ")
+      @associated_users = @role.users.map(&:name).join(", ")
     end
   end
 
-  # GET /roles/new
   def new
-    @role = Role.new
+    # @role = Role.new
   end
 
-  # GET /roles/1/edit
   def edit
   end
 
-  # POST /roles
-  # POST /roles.json
   def create
-    @role = Role.new(role_params)
+    # @role = Role.new(role_params)
 
     respond_to do |format|
       if @role.save
@@ -43,8 +36,6 @@ class RolesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /roles/1
-  # PATCH/PUT /roles/1.json
   def update
     respond_to do |format|
       if @role.update(role_params)
@@ -57,8 +48,6 @@ class RolesController < ApplicationController
     end
   end
 
-  # DELETE /roles/1
-  # DELETE /roles/1.json
   def destroy
     @role.destroy
     respond_to do |format|
@@ -68,12 +57,10 @@ class RolesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_role
-      @role = Role.find(params[:id])
-    end
+    # def set_role
+    #   @role = Role.find(params[:id])
+    # end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def role_params
       params.require(:role).permit(:name, :description)
     end

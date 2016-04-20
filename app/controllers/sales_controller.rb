@@ -1,31 +1,31 @@
 class SalesController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_sale, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+  # before_action :set_sale, only: [:show, :edit, :update, :destroy]
 
-  # GET /sales
-  # GET /sales.json
   def index
     set_sale_listing
   end
 
-  # GET /sales/1
-  # GET /sales/1.json
   def show
+    if Role.find_by(name: "admin").id != current_user.role_id
+      if Sale.find_by(id: params[:id]).user.id != current_user.id
+        raise CanCan::AccessDenied.new
+      end
+    end
   end
 
-  # GET /sales/new
   def new
-    @sale = Sale.new
+    @sale = current_user.sales.new
   end
 
-  # GET /sales/1/edit
   def edit
   end
 
-  # POST /sales
-  # POST /sales.json
   def create
     @sale = Sale.new(sale_params)
+    @sale.user_id = current_user.id
+    @sale.store_id = current_user.store.id
 
     respond_to do |format|
       if @sale.save
@@ -38,8 +38,6 @@ class SalesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /sales/1
-  # PATCH/PUT /sales/1.json
   def update
     respond_to do |format|
       if @sale.update(sale_params)
@@ -52,8 +50,6 @@ class SalesController < ApplicationController
     end
   end
 
-  # DELETE /sales/1
-  # DELETE /sales/1.json
   def destroy
     @sale.destroy
     respond_to do |format|
@@ -63,21 +59,17 @@ class SalesController < ApplicationController
   end
 
   private
-    def set_sale
-      @sale = Sale.find(params[:id])
-    end
-
     def set_sale_listing
       if Role.find_by(name: "admin").id == current_user.role_id
         @sales = Sale.all
       elsif Store.exists?(id: current_user.store_id)
         @sales = current_user.store.sales
       else
-        render 'users/_profile.html.erb'
+        raise CanCan::AccessDenied.new
       end
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+
     def sale_params
       params.require(:sale).permit(:sales_date, :number_of_bills, :bill_sale_amount, :number_of_invoices, :invoice_sale_amount, :store_id, :user_id)
     end

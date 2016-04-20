@@ -10,11 +10,30 @@ class User < ActiveRecord::Base
   before_save :assign_role
 
   def assign_role
-    self.role = Role.find_by name: "Regular" if self.role.nil?
+    self.role = Role.find_by name: "regular" if self.role.nil?
   end
 
   def store_with_property
     "#{self.store.name} local #{self.store.number} (#{Property.find_by(id: self.store.property_id).name})"
   end
 
+  def has_store?
+    if self.store.present?
+      true
+    else
+      false
+    end
+  end
+
+  def admin?
+    self.role.name == "admin"
+  end
+
+  def seller?
+    self.role.name == "seller"
+  end
+
+  def regular?
+    self.role.name == "regular"
+  end
 end

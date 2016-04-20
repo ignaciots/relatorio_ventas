@@ -1,4 +1,4 @@
-<h1>Listing Roles</h1>
+<h1>Roles</h1>
 
 <table>
   <thead>
@@ -14,14 +14,21 @@
       <tr>
         <td><%= role.name %></td>
         <td><%= role.description %></td>
-        <td><%= link_to 'Show', role %></td>
-        <td><%= link_to 'Edit', edit_role_path(role) %></td>
-        <td><%= link_to 'Destroy', role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :show, Role %>
+          <td><%= link_to 'Show', role %></td>
+        <% end %>
+        <% if can? :edit, Role %>
+          <td><%= link_to 'Edit', edit_role_path(role) %></td>
+        <% end %>
+        <% if can? :destroy, Role %>
+          <td><%= link_to 'Destroy', role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Role', new_role_path %>
+<% if can? :create, Role %>
+  <%= link_to 'New Role', new_role_path %>
+<% end %>

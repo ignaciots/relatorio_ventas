@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RelatorioVentas</title>
+  <title>Soluciones de Renta Inmobiliaria :: Relatorio de Ventas</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -12,25 +12,30 @@
     Signed in as <%= current_user.email %>. Not you?
     <%= link_to "Edit profile", edit_user_registration_path %>
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <% if Role.find_by(name: "admin").id == current_user.role_id %>
-  <ul>
-    <li><%= link_to "Centros comerciales", properties_path %></li>
-    <li><%= link_to "Locales", stores_path %></li>
-    <li><%= link_to "Ventas", sales_path %></li>
-    <li><%= link_to "Rubros", categories_path %></li>
-  </ul>
-  <% else  %>
-  <ul>
-    <li><%= link_to "Ventas", sales_path %></li>
-  </ul>
-  <% end %>
+    <ul>
+      <% if can? :show, Property %>
+        <li><%= link_to "Centros comerciales", properties_path %></li>
+      <% end %>
+      <% if can? :show, Store %>
+        <li><%= link_to "Locales", stores_path %></li>
+      <% end %>
+      <li><%= link_to "Ventas", sales_path %></li>
+      <% if can? :show, Category %>
+        <li><%= link_to "Rubros", categories_path %></li>
+      <% end %>
+      <% if can? :show, User %>
+        <li><%= link_to "Usuarios", users_path %></li>
+      <% end %>
+      <% if can? :show, Role %>
+        <li><%= link_to "Roles", roles_path %></li>
+      <% end %>
+    </ul>
 <% else %>
   <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
 <% end %>
 
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, id: "flash_#{name}" %>
-
 <% end %>
 
 <%= yield %>

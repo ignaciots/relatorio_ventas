@@ -6,12 +6,12 @@ one:
   bill_sale_amount: 1
   number_of_invoices: 1
   invoice_sale_amount: 1
-  store_id: 
+  store_id: 1
 
 two:
-  sales_date: 2016-04-13
+  sales_date: 2016-04-14
   number_of_bills: 1
   bill_sale_amount: 1
   number_of_invoices: 1
   invoice_sale_amount: 1
-  store_id: 
+  store_id: 2
