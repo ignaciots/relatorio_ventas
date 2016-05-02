@@ -12,23 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name, "Nombre completo" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :email %><br>
+    <%= f.label :email, "Correo electrónico" %><br>
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :role_id %><br>
+    <%= f.label :role_id, "Rol de acceso" %><br>
     <%= collection_select(:user, :role_id, Role.all, :id, :name, {prompt: true}) %>
   </div>
   <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password, placeholder: "8 characters minimum" %>
+    <%= f.label :password, "Contraseña" %><br>
+    <%= f.password_field :password, placeholder: "Mínimo 8 caracteres" %>
   </div>
   <div class="field">
-    <%= f.label :store_id %><br>
+    <%= f.label :store_id, "Unidad locativa" %><br>
     <%= collection_select(:user, :store_id, Store.all, :id, :name_with_property, {prompt: true}) %>
   </div>
   <div class="actions">

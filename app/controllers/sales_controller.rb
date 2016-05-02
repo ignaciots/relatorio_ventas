@@ -16,16 +16,16 @@ class SalesController < ApplicationController
   end
 
   def new
-    @sale = current_user.sales.new
+    #@sale = current_user.sales.new
+    @sale = Sale.new
   end
 
   def edit
   end
 
   def create
-    @sale = Sale.new(sale_params)
+    @sale = current_user.store.sales.new sale_params
     @sale.user_id = current_user.id
-    @sale.store_id = current_user.store.id
 
     respond_to do |format|
       if @sale.save
@@ -71,6 +71,6 @@ class SalesController < ApplicationController
 
 
     def sale_params
-      params.require(:sale).permit(:sales_date, :number_of_bills, :bill_sale_amount, :number_of_invoices, :invoice_sale_amount, :store_id, :user_id)
+      params.require(:sale).permit(:sales_date, :number_of_bills, :bill_sale_amount, :number_of_invoices, :invoice_sale_amount)
     end
 end

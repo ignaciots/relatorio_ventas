@@ -3,30 +3,30 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-        <% if can? :show, Property %>
-        <li><%= link_to "Centros comerciales", properties_path %></li>
-        <% end %>
-        <% if can? :show, Store %>
-        <li><%= link_to "Locales", stores_path %></li>
-        <% end %>
-        <li><%= link_to "Ventas", sales_path %></li>
-        <% if can? :show, Category %>
-        <li><%= link_to "Rubros", categories_path %></li>
-        <% end %>
-        <% if can? :show, User %>
-        <li><%= link_to "Usuarios", users_path %></li>
-        <% end %>
-        <% if can? :show, Role %>
-        <li><%= link_to "Roles", roles_path %></li>
-        <% end %>
-        <li><%= link_to "Editar perfil", edit_user_registration_path %></li>
-        <li><%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete %></li>
+          <% if can? :show, Property %>
+            <li><%= link_to "Centros Comerciales", properties_path %></li>
+          <% end %>
+          <% if can? :show, Store %>
+            <li><%= link_to "Unidades Locativas", stores_path %></li>
+          <% end %>
+          <li><%= link_to "Ventas", sales_path %></li>
+          <% if can? :show, Category %>
+            <li><%= link_to "Rubros", categories_path %></li>
+          <% end %>
+          <% if can? :show, User %>
+            <li><%= link_to "Usuarios", users_path %></li>
+          <% end %>
+          <% if can? :show, Role %>
+            <li><%= link_to "Roles", roles_path %></li>
+          <% end %>
+          <li><%= link_to "Editar perfil", edit_user_registration_path %></li>
+          <li><%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete %></li>
       </ul>
-    <% else %>
-    <li><%= link_to "Sign up", new_user_registration_path %></li>
-    <li><%= link_to "sign in", new_user_session_path %></li>
-    <% end %>
-  </ul>
-</nav>
-</div>
+        <% else %>
+          <li><%= link_to "Registrarse", new_user_registration_path %></li>
+          <li><%= link_to "Iniciar sesión", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
 </header>

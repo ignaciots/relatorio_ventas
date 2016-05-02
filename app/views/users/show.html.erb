@@ -1,35 +1,46 @@
 <p>
-  <strong>Name:</strong>
+  <strong>Registrado en:</strong>
+  <%= @joined_on %>
+</p>
+<p>
+  <strong>Última visita:</strong>
+  <%= @last_login %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
   <%= @user.name %>
 </p>
 
 <p>
-  <strong>Email:</strong>
+  <strong>Correo electrónico:</strong>
   <%= @user.email %>
 </p>
 
 <p>
-  <strong>Role:</strong>
+  <strong>Rol de acceso:</strong>
   <%= @user.role.name %>
 </p>
 
 <p>
-  <strong>Store:</strong>
+  <strong>Unidad locativa:</strong>
   <% if @user.has_store? %><%= @user.store_with_property %><% end %>
 </p>
 
 <p>
-  <strong>Joined on:</strong>
-  <%= @joined_on %>
-</p>
-<p>
-  <strong>Last logged in on:</strong>
-  <%= @last_login %>
-</p>
-<p>
-  <strong>No. times logged in:</strong>
+  <strong>Número de visitas:</strong>
   <%= @user.sign_in_count %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<p>
+  <strong>Última actualización de cuenta:</strong>
+  <%= @user.updated_at %>
+</p>
+
+<p>
+  <strong>Última IP de acceso:</strong>
+  <%= @user.last_sign_in_ip %>
+</p>
+
+<%= link_to 'Editar', edit_user_path(@user) %> |
+<%= link_to 'Volver', users_path %>

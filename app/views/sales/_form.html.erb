@@ -12,26 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :sales_date %><br>
+    <%= f.label :sales_date, "Fecha de venta" %><br>
     <%= f.date_select :sales_date %>
   </div>
   <div class="field">
-    <%= f.label :number_of_bills %><br>
+    <%= f.label :number_of_bills, "Número de boletas" %><br>
     <%= f.number_field :number_of_bills %>
   </div>
   <div class="field">
-    <%= f.label :bill_sale_amount %><br>
+    <%= f.label :bill_sale_amount, "Monto total boletas" %><br>
     <%= f.number_field :bill_sale_amount %>
   </div>
   <div class="field">
-    <%= f.label :number_of_invoices %><br>
+    <%= f.label :number_of_invoices, "Número de facturas" %><br>
     <%= f.number_field :number_of_invoices %>
   </div>
   <div class="field">
-    <%= f.label :invoice_sale_amount %><br>
+    <%= f.label :invoice_sale_amount, "Monto total facturas" %><br>
     <%= f.number_field :invoice_sale_amount %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Aceptar" %>
   </div>
 <% end %>
