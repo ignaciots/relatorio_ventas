@@ -1,36 +1,26 @@
-<p id="notice"><%= notice %></p>
+<% @properties.each do |property| %>
+  <div class="property row clearfix">
+    <h2>
+      <%= link_to property.name, property %><br>
+      <small class="adress"><%= property.address %></small>
+    </h2>
 
-<h1>Centros Comerciales</h1>
+    <div class="btn-group">
+      <% if can? :show, Property %>
+        <%= link_to 'Mostrar', property, class: "btn btn-default btn-sm" %>
+      <% end %>
+      <% if can? :edit, Property %>
+        <%= link_to 'Editar', edit_property_path(property), class: "btn btn-default btn-sm" %>
+      <% end %>
+      <% if can? :destroy, Property %>
+        <%= link_to 'Eliminar', property, method: :delete, class: "btn btn-default btn-sm", data: { confirm: 'Estás seguro?' } %>
+      <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    </div>
+  </div>
+<% end %>
 
-  <tbody>
-    <% @properties.each do |property| %>
-      <tr>
-        <td><%= property.name %></td>
-        <td><%= property.address %></td>
-        <% if can? :show, Property %>
-          <td><%= link_to 'Show', property %></td>
-        <% end %>
-        <% if can? :edit, Property %>
-          <td><%= link_to 'Edit', edit_property_path(property) %></td>
-        <% end %>
-        <% if can? :destroy, Property %>
-          <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<br />
 <% if can? :create, Property %>
-  <%= link_to 'New Property', new_property_path %>
+  <%= link_to 'Crear centro', new_property_path %>
 <% end %>

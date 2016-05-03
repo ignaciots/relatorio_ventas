@@ -1,32 +1,36 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <% if can? :show, Property %>
-            <li><%= link_to "Centros Comerciales", properties_path %></li>
-          <% end %>
-          <% if can? :show, Store %>
-            <li><%= link_to "Unidades Locativas", stores_path %></li>
-          <% end %>
-          <li><%= link_to "Ventas", sales_path %></li>
-          <% if can? :show, Category %>
-            <li><%= link_to "Rubros", categories_path %></li>
-          <% end %>
-          <% if can? :show, User %>
-            <li><%= link_to "Usuarios", users_path %></li>
-          <% end %>
-          <% if can? :show, Role %>
-            <li><%= link_to "Roles", roles_path %></li>
-          <% end %>
-          <li><%= link_to "Editar perfil", edit_user_registration_path %></li>
-          <li><%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete %></li>
-      </ul>
-        <% else %>
-          <li><%= link_to "Registrarse", new_user_registration_path %></li>
-          <li><%= link_to "Iniciar sesión", new_user_session_path %></li>
-        <% end %>
-      </ul>
-    </nav>
-  </div>
+<header class="navbar navbar-default" role="navigation">
+    <div class="navbar-inner">
+        <div class="container">
+            <div id="logo" class="navbar-brand"><%= link_to "SRI", root_path %></div>
+            <nav class="collapse navbar-collapse navbar-ex1-collapse">
+                <% if user_signed_in? -%>
+                <ul class="nav navbar-nav navbar-right">
+                    <% if can? :show, Property %>
+                    <li><%= link_to "Centros", properties_path %></li>
+                    <% end %>
+                    <% if can? :show, Store %>
+                    <li><%= link_to "Locales", stores_path %></li>
+                    <% end %>
+                    <li><%= link_to "Ventas", sales_path %></li>
+                    <% if can? :show, Category %>
+                    <li><%= link_to "Rubros", categories_path %></li>
+                    <% end %>
+                    <% if can? :show, User %>
+                    <li><%= link_to "Usuarios", users_path %></li>
+                    <% end %>
+                    <% if can? :show, Role %>
+                    <li><%= link_to "Roles", roles_path %></li>
+                    <% end %>
+                    <li><%= link_to "Cuenta", edit_user_registration_path %></li>
+                    <li><%= link_to "Cerrar sesión", destroy_user_session_path, :method => :delete %></li>
+                </ul>
+            <% else -%>
+                <ul class="nav navbar-nav pull-right">
+                  <li><%= link_to "Registrarse", new_user_registration_path %></li>
+                  <li><%= link_to "Iniciar sesión", new_user_session_path %></li>
+                </ul>
+                <% end -%>
+            </nav>
+        </div>
+    </div>
 </header>

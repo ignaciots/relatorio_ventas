@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Relatorio de Ventas :: Soluciones de Renta Inmobiliaria</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <%= render 'layouts/shim' %>
-</head>
-<body>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Relatorio de Ventas :: Soluciones de Renta Inmobiliaria</title>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
+        <%= render 'layouts/shim' %>
+    </head>
+    <body>
 
-<%= render 'layouts/header' %>
+        <%= render 'layouts/header' %>
 
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, id: "flash_#{name}" %>
-<% end %>
+        <div id="main_content" class="container">
+      		<% flash.each do |name, msg| %>
+      			<%= content_tag(:div, msg, class: "alert alert-info") %>
+      		<% end %>
 
-<div class="container">
-  <%= yield %>
-  <%= render 'layouts/footer' %>
-</div>
-
-</body>
+      			<div id="content" class="col-md-9 center-block">
+      				<%= yield %>
+      			</div>
+      		</div>
+          
+        <%= render 'layouts/footer' %>
+    </body>
 </html>

@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-
+  root to: 'sales#index'
   devise_for :users, :path => '', :path_names => {:sign_up => 'registrar_usuario',
     :edit => 'editar_usuario', :sign_in => 'iniciar_sesion', :sign_out => 'cerrar_sesion'}
-
   scope(path_names: {index: 'listado', show: 'mostrar', new: 'nuevo',
                       edit: 'editar', create: 'crear', update: 'actualizar',
                       destroy: 'destruir'}) do
@@ -12,8 +11,6 @@ Rails.application.routes.draw do
                         resources :roles, path: 'roles'
                         resources :properties, path: 'centros'
                         resources :sales, path: 'ventas'
-  end
+                        end
 
-
-  root to: 'properties#index'
 end
