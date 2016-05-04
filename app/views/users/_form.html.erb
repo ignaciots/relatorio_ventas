@@ -28,8 +28,8 @@
     <%= f.password_field :password, placeholder: "Mínimo 8 caracteres" %>
   </div>
   <div class="field">
-    <%= f.label :store_id, "Unidad locativa" %><br>
-    <%= collection_select(:user, :store_id, Store.all, :id, :name_with_property, {prompt: true}) %>
+    <%= f.label :store_id, "Local" %><br>
+    <%#= collection_select(:user, :store_id, Store.all, :id, :name_with_property, {prompt: true}) %>
   </div>
   <div class="actions">
     <%= f.submit %>

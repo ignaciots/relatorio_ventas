@@ -3,13 +3,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :role
   has_many :sales
-  # has_and_belongs_to_many :stores
   has_many :stores_users
   has_many :stores, :through => :stores_users
-
-  # belongs_to :store
-  # has_many :stores, through: :sales
-
   validates_presence_of :name, :email
   validates :email, uniqueness: { case_sensitive: false, message: "El correo electrónico ya existe" }
   before_save :assign_role
@@ -22,8 +17,8 @@ class User < ActiveRecord::Base
     "#{self.store.name} local #{self.store.number} (#{Property.find_by(id: self.store.property_id).name})"
   end
 
-  def has_store?
-    if self.store.present?
+  def has_stores?
+    if self.stores.any?
       true
     else
       false

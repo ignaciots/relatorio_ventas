@@ -23,11 +23,6 @@
 </p>
 
 <p>
-  <strong>Unidad locativa:</strong>
-  <% if @user.has_store? %><%= @user.store_with_property %><% end %>
-</p>
-
-<p>
   <strong>Número de visitas:</strong>
   <%= @user.sign_in_count %>
 </p>
