@@ -4,11 +4,11 @@ class SalesController < ApplicationController
   # before_action :set_sale, only: [:show, :edit, :update, :destroy]
 
   def index
-    set_sale_listing
+    set_sales_list
   end
 
   def show
-    if Role.find_by(name: "admin").id != current_user.role_id
+    if !current_user.administrador?
       if Sale.find_by(id: params[:id]).user.id != current_user.id
         raise CanCan::AccessDenied.new
       end
@@ -29,7 +29,7 @@ class SalesController < ApplicationController
 
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
+        format.html { redirect_to @sale, notice: 'La venta fue creada.' }
         format.json { render :show, status: :created, location: @sale }
       else
         format.html { render :new }
@@ -41,7 +41,7 @@ class SalesController < ApplicationController
   def update
     respond_to do |format|
       if @sale.update(sale_params)
-        format.html { redirect_to @sale, notice: 'Sale was successfully updated.' }
+        format.html { redirect_to @sale, notice: 'La venta fue actualizada exitosamente.' }
         format.json { render :show, status: :ok, location: @sale }
       else
         format.html { render :edit }
@@ -53,22 +53,25 @@ class SalesController < ApplicationController
   def destroy
     @sale.destroy
     respond_to do |format|
-      format.html { redirect_to sales_url, notice: 'Sale was successfully destroyed.' }
+      format.html { redirect_to sales_url, notice: 'La venta fue eliminada exitosamente.' }
       format.json { head :no_content }
     end
   end
 
   private
-    def set_sale_listing
-      if Role.find_by(name: "admin").id == current_user.role_id
+    def set_sales_list
+      if current_user.administrador?
         @sales = Sale.all
-      elsif Store.exists?(id: current_user.store_id)
-        @sales = current_user.store.sales
+      elsif current_user.supervisor?
+        current_user.stores.each do |store|
+          @sales = store.sales
+        end
+      elsif current_user.vendedor?
+        @sales = current_user.sales
       else
         raise CanCan::AccessDenied.new
       end
     end
-
 
     def sale_params
       params.require(:sale).permit(:sales_date, :number_of_bills, :bill_sale_amount, :number_of_invoices, :invoice_sale_amount)

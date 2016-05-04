@@ -15,10 +15,11 @@
       <% if can? :destroy, Property %>
         <%= link_to 'Eliminar', property, method: :delete, class: "btn btn-default btn-sm", data: { confirm: 'Estás seguro?' } %>
       <% end %>
-
     </div>
+
   </div>
 <% end %>
+
 
 <br />
 <% if can? :create, Property %>

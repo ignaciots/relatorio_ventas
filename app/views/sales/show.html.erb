@@ -1,50 +1,50 @@
 <p>
-  <strong>Sales date:</strong>
+  <strong>Fecha de ingreso de venta:</strong>
   <%= @sale.sales_date %>
 </p>
 
 <p>
-  <strong>Number of bills:</strong>
+  <strong>Cantidad de boletas emitidas:</strong>
   <%= @sale.number_of_bills %>
 </p>
 
 <p>
-  <strong>Bill sale amount:</strong>
+  <strong>Suma total de boletas emitidas:</strong>
   <%= @sale.bill_sale_amount %>
 </p>
 
 <p>
-  <strong>Number of invoices:</strong>
+  <strong>Cantidad de facturas emitidas:</strong>
   <%= @sale.number_of_invoices %>
 </p>
 
 <p>
-  <strong>Invoice sale amount:</strong>
+  <strong>Suma total de facturas emitidas:</strong>
   <%= @sale.invoice_sale_amount %>
 </p>
 
 <p>
-  <strong>Store Name:</strong>
+  <strong>Nombre de Local:</strong>
   <%= @sale.store.name %>
 </p>
 
 <p>
-  <strong>Store Number:</strong>
+  <strong>Número de Local:</strong>
   <%= @sale.store.number %>
 </p>
 
 <p>
-  <strong>Property:</strong>
+  <strong>Centro Comercial:</strong>
   <%= @sale.store.property.name %>
 </p>
 
 <p>
-  <strong>Author Name:</strong>
+  <strong>Autor:</strong>
   <%= @sale.user.name %>
 </p>
 
 <% if can? :edit, @sale %>
-  <%= link_to 'Edit', edit_sale_path(@sale) %> |
+  <%= link_to 'Editar', edit_sale_path(@sale) %> |
 <% end %>
 
-<%= link_to 'Back', sales_path %>
+<%= link_to 'Volver', sales_path %>

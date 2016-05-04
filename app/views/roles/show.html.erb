@@ -1,17 +1,17 @@
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre del Rol:</strong>
   <%= @role.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Descripción:</strong>
   <%= @role.description %>
 </p>
 
 <p>
-  <strong>Associated users:</strong>
+  <strong>Usuarios con este Rol:</strong>
   <%= @associated_users %>
 </p>
 
-<%= link_to 'Edit', edit_role_path(@role) %> |
-<%= link_to 'Back', roles_path %>
+<%= link_to 'Editar', edit_role_path(@role) %> |
+<%= link_to 'Volver', roles_path %>

@@ -4,7 +4,7 @@ class PropertiesController < ApplicationController
   # before_action :set_property, only: [:show, :edit, :update, :destroy]
 
   def index
-    @properties = Property.all
+    set_properties_list
   end
 
   def show
@@ -52,6 +52,16 @@ class PropertiesController < ApplicationController
   end
 
   private
+    def set_properties_list
+      if current_user.administrador?
+        @properties = Property.all
+      else
+        @properties = []
+        current_user.stores.each do |store|
+          @properties << Property.find_by(id: store.property_id)
+        end
+      end
+    end
     # def set_property
     #   @property = Property.find(params[:id])
     # end

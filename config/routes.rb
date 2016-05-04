@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'sales#index'
+  root to: 'properties#index'
   devise_for :users, :path => '', :path_names => {:sign_up => 'registrar_usuario',
     :edit => 'editar_usuario', :sign_in => 'iniciar_sesion', :sign_out => 'cerrar_sesion'}
   scope(path_names: {index: 'listado', show: 'mostrar', new: 'nuevo',

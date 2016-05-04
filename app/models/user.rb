@@ -1,16 +1,21 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :role
-  belongs_to :store
   has_many :sales
-  validates_presence_of :name
+  # has_and_belongs_to_many :stores
+  has_many :stores_users
+  has_many :stores, :through => :stores_users
+
+  # belongs_to :store
+  # has_many :stores, through: :sales
+
+  validates_presence_of :name, :email
+  validates :email, uniqueness: { case_sensitive: false, message: "El correo electrónico ya existe" }
   before_save :assign_role
 
   def assign_role
-    self.role = Role.find_by name: "regular" if self.role.nil?
+    self.role = Role.find_by name: "vendedor" if self.role.nil?
   end
 
   def store_with_property
@@ -25,15 +30,15 @@ class User < ActiveRecord::Base
     end
   end
 
-  def admin?
-    self.role.name == "admin"
+  def administrador?
+    self.role.name == "administrador"
   end
 
-  def seller?
-    self.role.name == "seller"
+  def vendedor?
+    self.role.name == "vendedor"
   end
 
-  def regular?
-    self.role.name == "regular"
+  def supervisor?
+    self.role.name == "supervisor"
   end
 end

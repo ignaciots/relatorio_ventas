@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417032057) do
+ActiveRecord::Schema.define(version: 20160504165249) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -64,6 +64,15 @@ ActiveRecord::Schema.define(version: 20160417032057) do
   add_index "stores", ["category_id"], name: "index_stores_on_category_id"
   add_index "stores", ["property_id"], name: "index_stores_on_property_id"
 
+  create_table "stores_users", force: :cascade do |t|
+    t.integer  "store_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "stores_users", ["store_id", "user_id"], name: "index_stores_users_on_store_id_and_user_id"
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",                          null: false
@@ -78,7 +87,6 @@ ActiveRecord::Schema.define(version: 20160417032057) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "store_id"
     t.integer  "role_id"
   end
 
